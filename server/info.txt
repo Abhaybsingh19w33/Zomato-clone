@@ -1,0 +1,9 @@
+nodejs does not support lot of ES6 features
+
+js itself does not kno how to compile the ES6
+there is a middle person or library named babel do this work for them
+Eg import ,export, let, const and arrow functions
+
+babel will convert ES6 to native js
+
+npm install @babel/preset-env @babel/cli @babel/node  --save-dev
