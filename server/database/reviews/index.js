@@ -10,6 +10,8 @@ const ReviewSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: "Images"
     }],
+}, {
+    timestamps: true
 });
 
 export const ReviewModel = mongoose.model("Reviews", ReviewSchema);
