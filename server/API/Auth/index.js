@@ -34,7 +34,7 @@ Router.post("/signup", async (req, res) => {
 
 /*
 Route   /signin
-Des     Register new user
+Des     SignIn with email and password
 Params  none
 Access  Public
 Method  Post
