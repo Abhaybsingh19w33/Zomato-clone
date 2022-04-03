@@ -13,8 +13,14 @@ npm run dev
 ## API planning
 
 - Auth  
+> SignUp
 ```
 http://localhost:4000/auth/signup
+```
+
+> SignIn
+```
+http://localhost:4000/auth/signin
 ```
 
 - Foods
