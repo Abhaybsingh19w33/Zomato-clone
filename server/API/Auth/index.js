@@ -1,7 +1,5 @@
 // Library
 import express from "express";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 
 // Models
 import { UserModel } from "../../database/user";
@@ -12,31 +10,20 @@ Route   /signup
 Des     Signup with email and password
 Params  none
 Access  Public
-Method Post
+Method  Post
 */
 Router.post("/signup", async (req, res) => {
     try {
-        const { email, password, fullname, phoneNumber } = req.body.credentials;
-
         // check whether email exist 
-        const checkUserByEmail = await UserModel.findOne({ email });
-        const checkUserByPhone = await UserModel.findOne({ phoneNumber });
-
-        if (checkUserByEmail || checkUserByPhone) {
-            return res.json({ error: "User already exist!" });
-        }
-
-        // hash password
-        // salt - number of iteration while hashing
-        const bcryptSalt = await bcrypt.genSalt(8);
-        const hashedPasswrod = await bcrypt.hash(password, bcryptSalt);
+        // static methods from UserModel
+        await UserModel.findByEmailAndPhone(req.body.credentials);
 
         // save to DB
-        await UserModel.create({ ...req.body.credentials, password: hashedPasswrod });
+        const newUser = await UserModel.create(req.body.credentials);
 
         // generate JWT auth token
         // second argument for jwt.sign is secretKey
-        const token = jwt.sign({ user: { fullname, email } }, "zomatoAPP");
+        const token = newUser.generateJwtToken();
 
         // respond to req or return
         return res.status(200).json({ token, status: "success" });
