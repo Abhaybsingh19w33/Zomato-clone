@@ -60,4 +60,22 @@ UserSchema.pre("save", function (next) {
     });
 });
 
+UserSchema.statics.findByEmailAndPassword = async ({ email, password }) => {
+    // check whether email exist 
+    const user = await UserModel.findOne({ email });
+
+    if (!user) {
+        throw new Error("User does not exist!");
+    }
+
+    // compare password
+    const doesPasswordMatch = await bcrypt.compare(password, user.password);
+
+    if (!doesPasswordMatch) {
+        throw new Error("Invalid Password!");
+    }
+
+    return user;
+};
+
 export const UserModel = mongoose.model("Users", UserSchema);
