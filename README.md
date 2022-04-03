@@ -23,6 +23,11 @@ http://localhost:4000/auth/signup
 http://localhost:4000/auth/signin
 ```
 
+> Google Auth
+```
+http://localhost:4000/auth/google
+```
+
 - Foods
 - Restaurants
 - Menu
