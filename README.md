@@ -1,6 +1,7 @@
 ## To run this project
 run commands
 ```
+cd server
 npm i
 npm run dev
 ```
