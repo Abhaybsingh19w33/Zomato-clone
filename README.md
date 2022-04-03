@@ -1,9 +1,11 @@
 ## To run this project
-run command
-> npm i
-> npm run dev
+run commands
+```
+npm i
+npm run dev
+```
 
-## The server will be running to 
+## The server will be running on
 > http://localhost:4000/
 
 
