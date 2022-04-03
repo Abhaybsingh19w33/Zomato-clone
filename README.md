@@ -12,7 +12,11 @@ npm run dev
 
 ## API planning
 
-- Auth
+- Auth  
+```
+http://localhost:4000/auth/signup
+```
+
 - Foods
 - Restaurants
 - Menu
