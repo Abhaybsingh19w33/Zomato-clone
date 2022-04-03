@@ -18,7 +18,7 @@ const RestaurantSchema = new mongoose.Schema({
     // phoneNumber: [{ type: Number }]
     restaurantTimings: String,
     contactNumber: Number,
-    website: Number,
+    website: String,
     popularDishes: [String],
     averageCost: Number,
     amenities: [String],
