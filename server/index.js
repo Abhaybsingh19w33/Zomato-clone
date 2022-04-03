@@ -1,3 +1,7 @@
+// Importing env variables
+require("dotenv").config();
+
+// Libraries
 import express from "express";
 // cross origin requests
 // it will allow the requests from other than your server
@@ -7,8 +11,10 @@ import cors from "cors";
 // add few layers for security
 import helmet from "helmet";
 
-const zomato = express();
+// Database connection
+import ConnectDB from "./database/connection";
 
+const zomato = express();
 
 // application middleware
 // It parses incoming requests with JSON payloads and is based on body-parser.
@@ -20,5 +26,10 @@ zomato.use(cors());
 
 zomato.get("/", (req, res) => res.json({ message: "Setup success" }));
 
-zomato.listen(4000, () => console.log("Server is running"));
-
+zomato.listen(4000, () =>
+    ConnectDB()
+        .then(() => console.log("Server is running"))
+        .catch(() =>
+            console.log("Server is running, but database connection failed... ")
+        )
+);
