@@ -11,6 +11,9 @@ import cors from "cors";
 // add few layers for security
 import helmet from "helmet";
 
+// microservice routes
+import Auth from "./API/Auth";
+
 // Database connection
 import ConnectDB from "./database/connection";
 
@@ -23,6 +26,8 @@ zomato.use(express.json());
 zomato.use(express.urlencoded({ extended: false }));
 zomato.use(helmet());
 zomato.use(cors());
+// imported routes, now merge it, with express
+zomato.use("/auth", Auth);
 
 zomato.get("/", (req, res) => res.json({ message: "Setup success" }));
 
