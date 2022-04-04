@@ -76,3 +76,12 @@ http://localhost:4000/menu/image/:_id
 - Reviews
 - User
 - Image
+> Get Image details
+```
+http://localhost:4000/image/:_id
+```
+
+> Uploads given image to S3 bucket, and saves file link to mongodb
+```
+http://localhost:4000/image/
+```
