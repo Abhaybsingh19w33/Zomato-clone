@@ -4,6 +4,10 @@ import passport from "passport";
 
 // Models
 import { UserModel } from "../../database/user";
+
+// Validation
+import { ValidateSignup, ValidateSignin } from "../../validation/auth";
+
 const Router = express.Router();
 
 /*
@@ -15,6 +19,8 @@ Method  Post
 */
 Router.post("/signup", async (req, res) => {
     try {
+        await ValidateSignup(req.body.credentials);
+
         // check whether email exist 
         // static methods from UserModel
         await UserModel.findByEmailAndPhone(req.body.credentials);
@@ -42,6 +48,8 @@ Method  Post
 */
 Router.post("/signin", async (req, res) => {
     try {
+        await ValidateSignin(req.body.credentials);
+
         // check whether email exist 
         // static methods from UserModel
         const user = await UserModel.findByEmailAndPassword(req.body.credentials);
