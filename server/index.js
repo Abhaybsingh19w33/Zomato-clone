@@ -15,6 +15,7 @@ import expressSession from "express-session";
 
 // configs
 import googleAuthConfig from "./config/google.config";
+import routeConfig from "./config/route.config";
 
 // microservice routes
 import Auth from "./API/Auth";
@@ -46,7 +47,9 @@ zomato.use(passport.session());
 
 // passport configuration
 googleAuthConfig(passport);
+routeConfig(passport);
 
+// Application routes
 // imported routes, now merge it, with express
 zomato.use("/auth", Auth);
 zomato.use("/restaurant", Restaurant);

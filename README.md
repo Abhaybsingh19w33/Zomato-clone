@@ -120,3 +120,6 @@ http://localhost:4000/image/:_id
 ```
 http://localhost:4000/image/
 ```
+
+HW
+create validation for apis and add forgot password feature
