@@ -100,6 +100,16 @@ http://localhost:4000/reviews/delete/:_id
 ```
 
 - User
+> Get user data
+```
+http://localhost:4000/user/:_id
+```
+
+> update user id
+```
+http://localhost:4000/user/update/:userId
+```
+
 - Image
 > Get Image details
 ```
