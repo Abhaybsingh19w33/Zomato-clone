@@ -72,8 +72,33 @@ http://localhost:4000/menu/image/:_id
 ```
 
 - Order
+> Get all orders based on id
+```
+http://localhost:4000/order/:_id
+```
+
+> Add new order
+```
+http://localhost:4000/order/new/:_id
+```
+
 - Payments -> razorpay
 - Reviews
+> Get all review
+```
+http://localhost:4000/reviews/:resid
+```
+
+> Add new food review/rating
+```
+http://localhost:4000/reviews/new
+```
+
+> Delete food review/rating
+```
+http://localhost:4000/reviews/delete/:_id
+```
+
 - User
 - Image
 > Get Image details
