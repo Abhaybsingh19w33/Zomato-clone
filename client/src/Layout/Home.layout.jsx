@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 
 // Components
 import Navbar from "../Components/Navbar";
-
+import FoodTab from "../Components/FoodTab";
 
 const HomeLayout = (props) => {
   return (
@@ -20,7 +20,10 @@ const HomeLayout = (props) => {
       {/* <div className="container mx-auto px-4 lg:px-20 ">{props.children}</div>       */}
 
       {/* this css is not for navbar, but the content in main   */}
-      <div className="container mx-auto px-4 lg:px-20 ">{props.children}</div>      
+      <div className="container mx-auto px-4 lg:px-20 ">{props.children}</div>
+
+      {/* Do not include it in container, because container will add space around it */}
+      <FoodTab />
     </Fragment>
   );
 };
