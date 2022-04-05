@@ -8,6 +8,8 @@ const HomeLayout = (props) => {
   return (
     <Fragment>
       <Navbar />
+      {/* Do not include it in container, because container will add space around it */}
+      <FoodTab />
 
       {/* here css is applied in small device to medium devices then large devices */}
       {/* container - the parent elements of other components in a React app */}
@@ -22,8 +24,6 @@ const HomeLayout = (props) => {
       {/* this css is not for navbar, but the content in main   */}
       <div className="container mx-auto px-4 lg:px-20 ">{props.children}</div>
 
-      {/* Do not include it in container, because container will add space around it */}
-      <FoodTab />
     </Fragment>
   );
 };
