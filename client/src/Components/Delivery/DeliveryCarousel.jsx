@@ -58,13 +58,16 @@ const DeliveryCarousal = () => {
       <h1 className="text-xl mb-4 font-semibold">
         Inspiration for your first order
       </h1>
-      <div className="lg:hidden flex gap-3 lg:gap-0 flex-wrap justify-between">
+
+      {/* Carousal for small and medium sized screen */}
+      <div className="flex gap-3 lg:hidden flex gap-0 flex-wrap justify-between">
         {categories.map((food) => (
           <DeliveryCategory {...food} />
         ))}
       </div>
 
-      <div className="hidden lg:block">
+      {/* Carousal for large screen size*/}
+      <div className="hidden lg:flex flex-col">
         <Slider {...settings}>
           {categories.map((food) => (
             <DeliveryCategory {...food} />
