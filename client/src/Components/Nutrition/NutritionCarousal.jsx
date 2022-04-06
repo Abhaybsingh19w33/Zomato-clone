@@ -51,13 +51,15 @@ const NutritionCarousal = () => {
     };
     return (
         <Fragment>
-            <div className="lg:hidden flex gap-3 lg:gap-0 flex-wrap justify-between">
+            {/* <div className="flex gap-3 lg:gap-0 flex-wrap justify-between lg:hidden "> */}
+            <div className="flex flex-wrap justify-between gap-3 lg:hidden">
                 {categories.map((food) => (
                     <NutritionCarousalCard {...food} />
                 ))}
             </div>
 
-            <div className="hidden  lg:block">
+            {/* for larger screen */}
+            <div className="hidden md:hidden lg:flex flex-col">
                 <Slider {...settings}>
                     {categories.map((food) => (
                         <NutritionCarousalCard {...food} />

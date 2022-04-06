@@ -3,7 +3,7 @@ import React, { Fragment } from "react";
 const NutritionCard = ({ image, title }) => {
     return (
         <Fragment>
-            <div className=" bg-white shadow rounded-md w-24 h-full px-3  md:px-4  md:w-56">
+            <div className="bg-white shadow rounded-md w-24 h-full px-3 md:px-4 md:w-56 lg:mx-auto">
                 <div className="w-full h-12 md:h-36">
                     <img
                         src={image}
