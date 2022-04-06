@@ -1,18 +1,22 @@
+import { Fragment } from "react";
+import { Route, Redirect } from "react-router-dom";
 // HOC
 import HomeLayoutHOC from "./HOC/Home.Hoc";
 
 // Component
-import Temp from "./Components/temp";
-import Master from "./Components/master";
-import { Fragment } from "react";
+
+// pages
+import Home from "./Page/Home";
 
 function App() {
   return (
     <Fragment>
-      <HomeLayoutHOC path="/" exact component={Temp} />
+      <Route path="/" exact>
+        <Redirect to="/delivery" />
+      </Route>
       {/* type is an url parameter */}
       {/* here we will pass the Master component, it will look for type parameter, depending on this type parameter it will render this component */}
-      <HomeLayoutHOC path="/:type" exact component={Master} />
+      <HomeLayoutHOC path="/:type" exact component={Home} />
     </Fragment>
   );
 }
