@@ -1,0 +1,19 @@
+Nirbhay19w33@
+
+const mailgun = require("mailgun-js");
+const DOMAIN = "sandbox446b8012c2bc45cb8e5be995c5fa84c5.mailgun.org";
+const mg = mailgun({apiKey: "b2f98d64c1270ac17001d3ed6e49c97e-2ac825a1-d90786c1", domain: DOMAIN});
+const data = {
+	from: "Mailgun Sandbox <postmaster@sandbox446b8012c2bc45cb8e5be995c5fa84c5.mailgun.org>",
+	to: "abhaybsingh19w33@gmail.com",
+	subject: "Hello",
+	text: "Testing some Mailgun awesomness!"
+};
+mg.messages().send(data, function (error, body) {
+	console.log(body);
+});
+
+// You can see a record of this email in your logs: https://app.mailgun.com/app/logs.
+
+// You can send up to 300 emails/day from this sandbox server.
+// Next, you should add your own domain so you can send 10000 emails/month for free.

@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import { Link, useParams } from "react-router-dom";
 import { IoMdArrowDropright } from "react-icons/io";
+import { MdContentCopy } from "react-icons/md";
+import { FaDirections } from "react-icons/fa";
 import Slider from "react-slick";
 import ReactStars from "react-rating-stars-component";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
@@ -10,23 +12,25 @@ import MenuCollection from "../../Components/restaurant/MenuCollection";
 import MenuSimilarRestaurantcard from "../../Components/restaurant/MenuSimilarRestaurantcard";
 import { NextArrow, PrevArrow } from "../../Components/CarousalArrow";
 import ReviewCard from "../../Components/restaurant/Reviews/reviewCard";
+import Mapview from "../../Components/restaurant/MapView";
 
 const Overview = () => {
     const { id } = useParams();
 
     const settings = {
-        arrows: true,
-        infinite: true,
+        dots: true,
+        infinite: false,
         speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        initialSlide: 0,
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />,
         responsive: [
             {
                 breakpoint: 1024,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 3,
                     slidesToScroll: 3,
                     infinite: true,
                     dots: true,
@@ -35,9 +39,9 @@ const Overview = () => {
             {
                 breakpoint: 600,
                 settings: {
-                    slidesToShow: 1,
+                    slidesToShow: 2,
                     slidesToScroll: 2,
-                    initialSlide: 0,
+                    initialSlide: 2,
                 },
             },
             {
@@ -134,6 +138,14 @@ const Overview = () => {
                             activeColor="#ffd700"
                         />
                     </div>
+                    <div className="my-4 w-full  md:hidden flex flex-col gap-4">
+                        <Mapview
+                            title="Mumbai Xpress"
+                            phno="+911212121212"
+                            mapLocation={[12.988134202889283, 77.59405893120281]}
+                            address="15, Sigma Central Mall, Vasanth Nagar, Cunningham Road, Bangalore"
+                        />
+                    </div>
                     <div className="my-4 flex flex-col gap-4">
                         <ReviewCard />
                         <ReviewCard />
@@ -142,9 +154,9 @@ const Overview = () => {
                 </div>
                 <aside
                     style={{ height: "fit-content" }}
-                    className="hidden md:block md:w-4/12 sticky rounded-xl top-2 bg-white p-3 shadow-md"
+                    className="hidden md:flex md:w-4/12 sticky rounded-xl top-2 bg-white p-3 shadow-md"
                 >
-                    <div>
+                    {/* <div>
                         <h4 className="text-xl font-medium">Call</h4>
                         <h5 className="text-zomato-400 font-medium">+918047192229</h5>
                     </div>
@@ -167,7 +179,13 @@ const Overview = () => {
                                 </Marker>
                             </MapContainer>
                         </div>
-                    </div>
+                    </div> */}
+                    <Mapview
+                        title="Mumbai Xpress"
+                        phno="+911212121212"
+                        mapLocation={[12.988134202889283, 77.59405893120281]}
+                        address="15, Sigma Central Mall, Vasanth Nagar, Cunningham Road, Bangalore"
+                    />
                 </aside>
             </div>
         </Fragment>
