@@ -1,10 +1,15 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { FaUserAlt } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { RiSearch2Line } from "react-icons/ri";
 
-const MobileNav = () => {
+// components
+import SignIn from "../Auth/SignIn";
+import SignUp from "../Auth/SignUp";
+
+const MobileNav = ({ SignIn, SignUp }) => {
+  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   return (
 
     // flex - it will help organize the logo and buttons
@@ -30,7 +35,7 @@ const MobileNav = () => {
 
       {/* flex - it is used to organize the widgets here it is used to align the logo and buttons */}
       {/* gap-3 - add gap in between both buttons */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 relative">
         {/* text-white - setting text color to white */}
         {/* py-2 setting padding from top and bottom by 2 */}
         {/* px-3 - padding to left and right by 3 */}
@@ -43,15 +48,24 @@ const MobileNav = () => {
         {/* border-gray-300 - adding border of gray color */}
         {/* text-zomato-400 -changing color of the icon */}
         {/* rounded-full - rounding the edges */}
-        <span className="border p-2 border-gray-300 text-zomato-400 rounded-full">
+        <span
+          onClick={() => setIsDropDownOpen((prev) => !prev)}
+          className="border p-2 border-gray-300 text-zomato-400 rounded-full"
+        >
           <FaUserAlt />
         </span>
+        {isDropDownOpen && (
+          <div className="absolute shadow-lg py-3 -bottom-20 -right-4 w-full bg-white z-20 flex flex-col gap-2">
+            <button onClick={SignIn}>Sign In</button>
+            <button onClick={SignUp}>Sign Up</button>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
-const LargeNav = () => {
+const LargeNav = ({ SignIn, SignUp }) => {
   return (
     <Fragment>
       {/* hidden - hidden for small and medium screen size */}
@@ -65,7 +79,7 @@ const LargeNav = () => {
         {/* flex - to facilitate children nodes to access flex without ant issue*/}
         {/* gap-4 - gap of 4 between logo and search bar */}
         {/* justify-around - adding proper space all element to fill the container properly */}
-        <div className="hidden gap-4 w-full items-center justify-around lg:flex">
+        <div className="hidden gap-4 w-full items-center justify-around lg:flex ">
           <div className="w-28">
             <img
               src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png"
@@ -82,7 +96,7 @@ const LargeNav = () => {
           {/* items-center */}
           {/* gap-3 */}
           {/* rounded - round the edge */}
-          <div className="w-3/4 bg-white shadow-md p-3 flex items-center gap-3 border border-gray-200 rounded">
+          <div className=" w-3/4 bg-white shadow-md p-3 flex items-center gap-3 border border-gray-200 rounded">
             {/* flex - to align all three widgets */}
             {/* items-center - aligning them to center */}
             {/* gap-2 adding gap of 2 */}
@@ -129,10 +143,16 @@ const LargeNav = () => {
 
             {/* text-xl - xl size of text */}
             {/* hover:text-gray-800 - on hover change color of text to gray-800*/}
-            <button className="text-gray-500 text-xl hover:text-gray-800">
+            <button
+              onClick={SignIn}
+              className="text-gray-500 text-xl hover:text-gray-800"
+            >
               Login
             </button>
-            <button className="text-gray-500 text-xl hover:text-gray-800">
+            <button
+              onClick={SignUp}
+              className="text-gray-500 text-xl hover:text-gray-800"
+            >
               Signup
             </button>
           </div>
@@ -144,6 +164,11 @@ const LargeNav = () => {
 };
 
 const Navbar = () => {
+  const [openSignin, setOpenSignin] = useState(false);
+  const [openSignup, setOpenSignup] = useState(false);
+
+  const openSignInmodal = () => setOpenSignin(true);
+  const openSignUpmodal = () => setOpenSignup(true);
   return (
     <Fragment>
       {/* p-4 adding padding of 4 from all sides */}
@@ -155,9 +180,12 @@ const Navbar = () => {
       {/* lg:shadow-none - removing shadow from large screen devices */}
       {/* w-full width to full for large screen size */}
       {/* items-center - alligning items to center */}
-      <nav className="p-4 flex bg-white shadow-md lg:shadow-none w-full items-center ">
-        <MobileNav />
-        <LargeNav />
+      <SignIn isOpen={openSignin} setIsOpen={setOpenSignin} />
+      <SignUp isOpen={openSignup} setIsOpen={setOpenSignup} />
+
+      <nav className="p-4 flex bg-white shadow-md lg:shadow-none w-full items-center">
+        <MobileNav SignIn={openSignInmodal} SignUp={openSignUpmodal} />
+        <LargeNav SignIn={openSignInmodal} SignUp={openSignUpmodal} />
       </nav>
     </Fragment>
   );
