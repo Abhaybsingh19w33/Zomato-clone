@@ -13,7 +13,7 @@ export default function ReviewModal({
     }
 
     return (
-        <>
+        <Fragment>
             <Transition appear show={isOpen} as={Fragment}>
                 <Dialog
                     as="div"
@@ -105,6 +105,6 @@ export default function ReviewModal({
                     </div>
                 </Dialog>
             </Transition>
-        </>
+        </Fragment>
     );
 }

@@ -8,7 +8,7 @@ export default function SignUp({ isOpen, setIsOpen }) {
     }
 
     return (
-        <>
+        <Fragment>
             <Transition appear show={isOpen} as={Fragment}>
                 <Dialog
                     as="div"
@@ -92,6 +92,6 @@ export default function SignUp({ isOpen, setIsOpen }) {
                     </div>
                 </Dialog>
             </Transition>
-        </>
+        </Fragment>
     );
 }

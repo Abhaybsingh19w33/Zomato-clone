@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { IoMdArrowDropright } from "react-icons/io";
 
 const PictureCarousalCard = () => {
     return (
-        <>
+        <Fragment>
             <div className="w-full h-64 relative px-4 overflow-hidden">
                 <div className="w-full h-full relative">
                     <img
@@ -26,7 +26,7 @@ const PictureCarousalCard = () => {
                     </h6>
                 </div>
             </div>
-        </>
+        </Fragment>
     );
 };
 
