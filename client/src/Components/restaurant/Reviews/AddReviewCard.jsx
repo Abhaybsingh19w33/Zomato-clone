@@ -1,8 +1,7 @@
 import React, { Fragment, useState } from "react";
 
 // component
-import ReviewModal from "./ReviewModel";
-// import ReviewModal from "./ReviewModal";
+import ReviewModal from "./ReviewModal";
 
 const AddReviewCard = () => {
     const [isOpen, setIsOpen] = useState(false);

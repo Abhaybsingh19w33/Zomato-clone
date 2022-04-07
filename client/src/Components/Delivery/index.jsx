@@ -1,7 +1,8 @@
 import React, { useState, Fragment } from "react";
 
 // components
-import DeliveryCarousal from "./DeliveryCarousel";
+import DeliveryCarousal from "./DeliveryCarousal";
+
 import Brand from "./Brand";
 import RestaurantCard from "../RestaurantCard";
 

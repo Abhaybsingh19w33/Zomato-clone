@@ -5,7 +5,7 @@ import Slider from "react-slick";
 import PictureCarousalCard from "../PictureCarousal";
 import { NextArrow, PrevArrow } from "../CarousalArrow";
 
-const DiningCarousel = () => {
+const DiningCarousal = () => {
     const settings = {
         dots: true,
         infinite: false,
@@ -57,4 +57,4 @@ const DiningCarousel = () => {
     );
 };
 
-export default DiningCarousel;
+export default DiningCarousal;
