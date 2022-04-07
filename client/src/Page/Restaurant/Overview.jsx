@@ -21,7 +21,7 @@ const Overview = () => {
         dots: true,
         infinite: false,
         speed: 500,
-        slidesToShow: 4,
+        slidesToShow: 3,
         slidesToScroll: 4,
         initialSlide: 0,
         nextArrow: <NextArrow />,
@@ -30,8 +30,8 @@ const Overview = () => {
             {
                 breakpoint: 1024,
                 settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
                     infinite: true,
                     dots: true,
                 },
@@ -76,7 +76,10 @@ const Overview = () => {
                         <MenuCollection
                             menuTitle="Menu"
                             pages="3"
-                            image="https://b.zmtcdn.com/data/menus/920/19438920/21fa39744f465abc5f947f1e9319fb5d.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A"
+                            image={[
+                                "https://b.zmtcdn.com/data/menus/920/19438920/21fa39744f465abc5f947f1e9319fb5d.jpg",
+                                "https://images.unsplash.com/photo-1526382551041-3c817fc3d478?dpr=2&auto=format&w=1024&h=1024",
+                            ]}
                         />
                     </div>
                     <h4 className="text-lg font-medium my-4">Cuisines</h4>
@@ -98,7 +101,7 @@ const Overview = () => {
                             Exclusive of applicable taxes and charges, if any
                         </small>
                     </div>
-                    <div className="border my-4">
+                    <div className="my-4">
                         <h4 className="text-lg font-medium">Similar Restaurants</h4>
                         <div>
                             {/* <div className="m-3"> */}
@@ -138,7 +141,8 @@ const Overview = () => {
                             activeColor="#ffd700"
                         />
                     </div>
-                    <div className="my-4 w-full  md:hidden flex flex-col gap-4">
+                    {/* map for small and medium screen size */}
+                    <div className="my-4 w-full  md:flex flex-col gap-4 lg:hidden ">
                         <Mapview
                             title="Mumbai Xpress"
                             phno="+911212121212"
@@ -152,10 +156,8 @@ const Overview = () => {
                         <ReviewCard />
                     </div>
                 </div>
-                <aside
-                    style={{ height: "fit-content" }}
-                    className="hidden md:flex md:w-4/12 sticky rounded-xl top-2 bg-white p-3 shadow-md"
-                >
+                {/* map for large screen */}
+                <aside style={{ height: "fit-content" }} className="hidden md:hidden w-4/12 sticky rounded-xl top-2 bg-white p-3 shadow-md lg:flex flex-col">
                     {/* <div>
                         <h4 className="text-xl font-medium">Call</h4>
                         <h5 className="text-zomato-400 font-medium">+918047192229</h5>
