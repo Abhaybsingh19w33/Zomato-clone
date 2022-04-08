@@ -1,4 +1,5 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { AiOutlineCompass } from "react-icons/ai";
 import { BiTimeFive } from "react-icons/bi";
 
@@ -8,7 +9,25 @@ import FloatMenuBtn from "../../Components/restaurant/Order-Online/FloatMenuBtn"
 import MenuListContainer from "../../Components/restaurant/Order-Online/MenuListContainer";
 import FoodList from "../../Components/restaurant/Order-Online/FoodList";
 
+// redux actions
+import { getFoodList } from "../../Redux/Reducer/Food/Food.action";
+
 const OrderOnline = () => {
+
+    const [menu, setMenu] = useState([]);
+
+    const reduxState = useSelector(
+        (globalStore) => globalStore.restaurant.selectedRestaurant.restaurant
+    );
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        reduxState &&
+            dispatch(getFoodList(reduxState.menu)).then((data) =>
+                setMenu(data.payload.menus.menus)
+            );
+    }, [reduxState]);
+
     return (
         <Fragment>
             {/* <div className="w-full">SD</div> */}
@@ -25,7 +44,10 @@ const OrderOnline = () => {
                         </h4>
                     </div>
                     <section className="flex  h-screen overflow-y-scroll flex-col gap-3 md:gap-5">
-                        <FoodList
+                        {menu.map((item) => (
+                            <FoodList key={item._id} {...item} />
+                        ))}
+                        {/* <FoodList
                             title="Recommended"
                             items={[
                                 {
@@ -38,7 +60,7 @@ const OrderOnline = () => {
                                         "https://b.zmtcdn.com/data/dish_photos/839/62575c08ce26635e3f48b3642805d839.jpg?output-format=webp",
                                 },
                             ]}
-                        />
+                        /> */}
                         {/* <FoodList
                             title="Pizza"
                             items={[

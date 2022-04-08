@@ -16,9 +16,12 @@ import ReviewCard from "../../Components/restaurant/Reviews/reviewCard";
 import Mapview from "../../Components/restaurant/MapView";
 
 import { getImage } from "../../Redux/Reducer/Image/Image.action";
+import { getReviews } from "../../Redux/Reducer/Reviews/review.action";
 
 const Overview = () => {
     const [menuImage, setMenuImages] = useState({ images: [] });
+    const [Reviews, setReviewss] = useState([]);
+
     const { id } = useParams();
 
     const settings = {
@@ -71,6 +74,9 @@ const Overview = () => {
                 data.payload.image.images.map(({ location }) => images.push(location));
                 setMenuImages(images);
             });
+            dispatch(getReviews(reduxState?._id)).then((data) =>
+                setReviewss(data.payload.reviews)
+            );
         }
     }, []);
 
@@ -82,9 +88,9 @@ const Overview = () => {
         return mapAddress?.split(",").map((item) => parseFloat(item));
     };
 
-    console.log(
-        reduxState?.mapLocation?.split(",").map((item) => parseFloat(item))
-    );
+    // console.log(
+    //     reduxState?.mapLocation?.split(",").map((item) => parseFloat(item))
+    // );
     return (
         <Fragment>
             <div className="flex flex-col md:flex-row relative">
@@ -172,6 +178,9 @@ const Overview = () => {
                             size={24}
                             activeColor="#ffd700"
                         />
+                        {Reviews.map((reviewData) => (
+                            <ReviewCard {...reviewData} />
+                        ))}
                     </div>
                     {/* map for small and medium screen size */}
                     <div className="my-4 w-full  md:flex flex-col gap-4 lg:hidden ">
@@ -186,11 +195,12 @@ const Overview = () => {
                             address={reduxState?.address}
                         />
                     </div>
-                    <div className="my-4 flex flex-col gap-4">
+                    {/* <div className="my-4 flex flex-col gap-4">
                         <ReviewCard />
                         <ReviewCard />
                         <ReviewCard />
-                    </div>
+                    </div> */}
+                    <div className="my-4 flex flex-col gap-4"></div>
                 </div>
                 {/* map for large screen */}
                 <aside style={{ height: "fit-content" }} className="hidden md:hidden w-4/12 sticky rounded-xl top-2 bg-white p-3 shadow-md lg:flex flex-col">

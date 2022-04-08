@@ -17,7 +17,7 @@ Router.get("/list/:_id", async (req, res) => {
   try {
     const { _id } = req.params;
     // list of all food data json
-    const menus = await MenuModel.findOne(_id);
+    const menus = await MenuModel.findById(_id);
 
     return res.json({ menus });
   } catch (error) {

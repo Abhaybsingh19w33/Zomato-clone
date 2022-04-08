@@ -58,6 +58,8 @@ Method    GET
 */
 Router.get("/r/:category", async (req, res) => {
   try {
+    await Validatecategory(res.params);
+    
     const { category } = req.params;
     const foods = await FoodModel.find({
       category: { $regex: category, $options: "i" },
