@@ -17,6 +17,7 @@ import Reviews from "./Page/Restaurant/Reviews";
 import Menu from "./Page/Restaurant/Menu";
 import Photos from "./Page/Restaurant/Photos";
 import Checkout from "./Page/Checkout";
+import RedirectRestaurant from "./Page/Restaurant/Redirect";
 
 function App() {
   return (
@@ -24,9 +25,11 @@ function App() {
       <Route path="/" exact>
         <Redirect to="/delivery" />
       </Route>
-      <Route path="/restaurant/:id" exact>
+      {/* <Route path="/restaurant/:id" exact>
         <Redirect to="/restaurant/:id/overview" />
-      </Route>
+      </Route> */}
+
+      <Route path="/restaurant/:id" exact component={RedirectRestaurant} />
       {/* type is an url parameter */}
       {/* here we will pass the Master component, it will look for type parameter, depending on this type parameter it will render this component */}
       <HomeLayoutHOC path="/:type" exact component={Home} />
