@@ -1,9 +1,19 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 // components
 import Navbar from "../Components/Navbar/checkoutNavBar";
 
+// redux action
+import { getCart } from "../Redux/Reducer/Cart/Cart.action";
+
 const CheckoutLayout = (props) => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getCart());
+    }, []);
+
     return (
         <Fragment>
             <Navbar />
