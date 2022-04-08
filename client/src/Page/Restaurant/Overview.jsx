@@ -77,6 +77,14 @@ const Overview = () => {
     const ratingChanged = (newRating) => {
         console.log(newRating);
     };
+
+    const getLatLong = (mapAddress) => {
+        return mapAddress?.split(",").map((item) => parseFloat(item));
+    };
+
+    console.log(
+        reduxState?.mapLocation?.split(",").map((item) => parseFloat(item))
+    );
     return (
         <Fragment>
             <div className="flex flex-col md:flex-row relative">
@@ -105,7 +113,7 @@ const Overview = () => {
                     </div>
                     <h4 className="text-lg font-medium my-4">Cuisines</h4>
                     <div className="flex flex-wrap gap-2">
-                        <span className="border border-gray-600 text-blue-600 px-2 py-1 rounded-full">
+                        {/* <span className="border border-gray-600 text-blue-600 px-2 py-1 rounded-full">
                             Street Food
                         </span>
                         <span className="border border-gray-600 text-blue-600 px-2 py-1 rounded-full">
@@ -113,11 +121,16 @@ const Overview = () => {
                         </span>
                         <span className="border border-gray-600 text-blue-600 px-2 py-1 rounded-full">
                             Street Food
-                        </span>
+                        </span> */}
+                        {reduxState?.cuisine.map((data) => (
+                            <span className="border border-gray-600 text-blue-600 px-2 py-1 rounded-full">
+                                {data}
+                            </span>
+                        ))}
                     </div>
                     <div className="my-4">
                         <h4 className="text-lg font-medium">Average Cost</h4>
-                        <h6>₹100 for one order (approx.)</h6>
+                        <h6>₹{reduxState?.averageCost} for one order (approx.)</h6>
                         <small className="text-gray-500">
                             Exclusive of applicable taxes and charges, if any
                         </small>
@@ -125,8 +138,6 @@ const Overview = () => {
                     <div className="my-4">
                         <h4 className="text-lg font-medium">Similar Restaurants</h4>
                         <div>
-                            {/* <div className="m-3"> */}
-                            {/* <div className="my-3"> */}
                             <Slider {...settings}>
                                 <MenuSimilarRestaurantcard
                                     image="https://b.zmtcdn.com/data/pictures/chains/5/18711475/4be376adb66b75764946d00a7dcf9991_featured_v2.jpg?output-format=webp"
@@ -165,10 +176,14 @@ const Overview = () => {
                     {/* map for small and medium screen size */}
                     <div className="my-4 w-full  md:flex flex-col gap-4 lg:hidden ">
                         <Mapview
-                            title="Mumbai Xpress"
-                            phno="+911212121212"
-                            mapLocation={[12.988134202889283, 77.59405893120281]}
-                            address="15, Sigma Central Mall, Vasanth Nagar, Cunningham Road, Bangalore"
+                            // title="Mumbai Xpress"
+                            // phno="+911212121212"
+                            // mapLocation={[12.988134202889283, 77.59405893120281]}
+                            // address="15, Sigma Central Mall, Vasanth Nagar, Cunningham Road, Bangalore"
+                            title={reduxState?.name}
+                            phno={`+91${reduxState?.contactNumber}`}
+                            mapLocation={getLatLong(reduxState?.mapLocation)}
+                            address={reduxState?.address}
                         />
                     </div>
                     <div className="my-4 flex flex-col gap-4">
@@ -204,10 +219,14 @@ const Overview = () => {
                         </div>
                     </div> */}
                     <Mapview
-                        title="Mumbai Xpress"
-                        phno="+911212121212"
-                        mapLocation={[12.988134202889283, 77.59405893120281]}
-                        address="15, Sigma Central Mall, Vasanth Nagar, Cunningham Road, Bangalore"
+                        // title="Mumbai Xpress"
+                        // phno="+911212121212"
+                        // mapLocation={[12.988134202889283, 77.59405893120281]}
+                        // address="15, Sigma Central Mall, Vasanth Nagar, Cunningham Road, Bangalore"
+                        title={reduxState?.name}
+                        phno={`+91${reduxState?.contactNumber}`}
+                        mapLocation={getLatLong(reduxState?.mapLocation)}
+                        address={reduxState?.address}
                     />
                 </aside>
             </div>
