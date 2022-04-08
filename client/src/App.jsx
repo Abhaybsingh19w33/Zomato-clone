@@ -19,6 +19,7 @@ import Menu from "./Page/Restaurant/Menu";
 import Photos from "./Page/Restaurant/Photos";
 import Checkout from "./Page/Checkout";
 import RedirectRestaurant from "./Page/Restaurant/Redirect";
+import GoogleAuth from "./Page/GoogleAuth";
 
 // axios global settings
 if (localStorage.zomatoUser) {
@@ -40,6 +41,7 @@ function App() {
       {/* type is an url parameter */}
       {/* here we will pass the Master component, it will look for type parameter, depending on this type parameter it will render this component */}
       <HomeLayoutHOC path="/:type" exact component={Home} />
+      <HomeLayoutHOC path="/google/:token" exact component={GoogleAuth} />
       {/* <RestaurantLayoutHOC path="/restaurant/:id" exact component={Temp} /> */}
       <RestaurantLayoutHOC
         path="/restaurant/:id/overview"
