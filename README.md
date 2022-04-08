@@ -123,3 +123,11 @@ http://localhost:4000/image/
 
 HW
 create validation for apis and add forgot password feature
+
+**For Reference**
+
+```
+https://github.com/pavankpdev/zomato-clone-practice
+
+https://github.com/pavankpdev/zomato-proj-master-shapeai
+```
