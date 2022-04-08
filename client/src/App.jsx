@@ -7,6 +7,7 @@ import RestaurantLayoutHOC from "./HOC/Restaurant.HOC";
 
 // Component
 import Temp from "./Components/Temp";
+import CheckoutLayoutHOC from "./HOC/Checkout.Hoc";
 
 // pages
 import Home from "./Page/Home";
@@ -15,6 +16,7 @@ import OrderOnline from "./Page/Restaurant/OrderOnline";
 import Reviews from "./Page/Restaurant/Reviews";
 import Menu from "./Page/Restaurant/Menu";
 import Photos from "./Page/Restaurant/Photos";
+import Checkout from "./Page/Checkout";
 
 function App() {
   return (
@@ -53,6 +55,7 @@ function App() {
         exact
         component={Photos}
       />
+      <CheckoutLayoutHOC path="/checkout/orders" exact component={Checkout} />
     </Fragment>
   );
 }
