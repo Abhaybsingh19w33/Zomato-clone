@@ -1,5 +1,6 @@
 // Libraries
 import express from "express";
+import passport from "passport";
 
 // Database modal
 import { UserModel } from "../../database/allModels";
