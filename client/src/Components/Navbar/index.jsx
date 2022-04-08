@@ -3,6 +3,8 @@ import { FaUserAlt } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { RiSearch2Line } from "react-icons/ri";
+import { useSelector } from "react-redux";
+import gravatar from "gravatar";
 
 // components
 import SignIn from "../Auth/SignIn";
@@ -10,6 +12,9 @@ import SignUp from "../Auth/SignUp";
 
 const MobileNav = ({ SignIn, SignUp }) => {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+
+  const reduxState = useSelector((global) => global.user.user);
+
   return (
 
     // flex - it will help organize the logo and buttons
@@ -48,17 +53,40 @@ const MobileNav = ({ SignIn, SignUp }) => {
         {/* border-gray-300 - adding border of gray color */}
         {/* text-zomato-400 -changing color of the icon */}
         {/* rounded-full - rounding the edges */}
-        <span
-          onClick={() => setIsDropDownOpen((prev) => !prev)}
-          className="border p-2 border-gray-300 text-zomato-400 rounded-full"
-        >
-          <FaUserAlt />
-        </span>
-        {isDropDownOpen && (
-          <div className="absolute shadow-lg py-3 -bottom-20 -right-4 w-full bg-white z-20 flex flex-col gap-2">
-            <button onClick={SignIn}>Sign In</button>
-            <button onClick={SignUp}>Sign Up</button>
-          </div>
+        {reduxState?.user?.fullname ? (
+          <Fragment>
+            {" "}
+            <div
+              onClick={() => setIsDropDownOpen((prev) => !prev)}
+              className="border p-2 border-gray-300 text-zomato-400 w-20 h-20 rounded-full"
+            >
+              <img
+                src={gravatar.url(reduxState?.user?.email)}
+                alt={reduxState?.user?.email}
+                className="w-full h-full rounded-full object-cover"
+              />
+            </div>
+            {isDropDownOpen && (
+              <div className="absolute shadow-lg py-3 -bottom-20 -right-4 w-full bg-white z-20 flex flex-col gap-2">
+                <button>Sign Out</button>
+              </div>
+            )}
+          </Fragment>
+        ) : (
+          <Fragment>
+            <span
+              onClick={() => setIsDropDownOpen((prev) => !prev)}
+              className="border p-2 border-gray-300 text-zomato-400 rounded-full"
+            >
+              <FaUserAlt />
+            </span>
+            {isDropDownOpen && (
+              <div className="absolute shadow-lg py-3 -bottom-20 -right-4 w-full bg-white z-20 flex flex-col gap-2">
+                <button onClick={SignIn}>Sign In</button>
+                <button onClick={SignUp}>Sign Up</button>
+              </div>
+            )}
+          </Fragment>
         )}
       </div>
     </div>
@@ -66,6 +94,11 @@ const MobileNav = ({ SignIn, SignUp }) => {
 };
 
 const LargeNav = ({ SignIn, SignUp }) => {
+
+  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+
+  const reduxState = useSelector((global) => global.user.user);
+
   return (
     <Fragment>
       {/* hidden - hidden for small and medium screen size */}
@@ -139,24 +172,45 @@ const LargeNav = ({ SignIn, SignUp }) => {
           {/* ml-28 - margin of 28 to left  */}
           {/* flex - to align widgets */}
           {/* gap-4 - adding gap in between*/}
-          <div className="ml-28 flex gap-4">
+          {/* <div className="ml-28 flex gap-4"> */}
 
-            {/* text-xl - xl size of text */}
-            {/* hover:text-gray-800 - on hover change color of text to gray-800*/}
-            <button
-              onClick={SignIn}
-              className="text-gray-500 text-xl hover:text-gray-800"
-            >
-              Login
-            </button>
-            <button
-              onClick={SignUp}
-              className="text-gray-500 text-xl hover:text-gray-800"
-            >
-              Signup
-            </button>
-          </div>
-
+          {/* text-xl - xl size of text */}
+          {/* hover:text-gray-800 - on hover change color of text to gray-800*/}
+          {reduxState?.user?.fullname ? (
+            <div className="relative w-20">
+              {" "}
+              <div
+                onClick={() => setIsDropDownOpen((prev) => !prev)}
+                className="border p-2 border-gray-300 text-zomato-400 w-full h-20 rounded-full"
+              >
+                <img
+                  src={gravatar.url(reduxState?.user?.email)}
+                  alt={reduxState?.user?.email}
+                  className="w-full h-full rounded-full object-cover"
+                />
+              </div>
+              {isDropDownOpen && (
+                <div className="absolute shadow-lg py-3  -right-4 w-full bg-white z-30 flex flex-col gap-2">
+                  <button>Sign Out</button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="ml-28 flex gap-4 ">
+              <button
+                onClick={SignIn}
+                className="text-gray-500 text-xl hover:text-gray-800"
+              >
+                Login
+              </button>
+              <button
+                onClick={SignUp}
+                className="text-gray-500 text-xl hover:text-gray-800"
+              >
+                Signup
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </Fragment>
