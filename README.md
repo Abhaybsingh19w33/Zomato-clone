@@ -1,3 +1,9 @@
+### In this project
+I have created both backend and frontend from scratch using MERN. 
+
+But I have not allocate resources need to run this project.
+Resources like mongoDB, mailgun, razorpay, AWS.
+
 ## To run this project
 run commands
 ```
@@ -125,7 +131,6 @@ HW
 create validation for apis and add forgot password feature
 
 **For Reference**
-
 ```
 https://github.com/pavankpdev/zomato-clone-practice
 
