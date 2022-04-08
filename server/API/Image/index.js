@@ -8,7 +8,7 @@ import multer from "multer";
 import { ImageModel } from "../../database/allModels";
 
 // Utilities
-import {s3Upload} from "../../Utils/s3";
+import { s3Upload } from "../../Utils/s3";
 
 // AWS s3 bucket config
 // I don't have S3 so this will not work
@@ -54,8 +54,8 @@ Method    POST
 // allowiing user to upload multiple files,
 // here 4 at once
 // this feature of ulploading multiple files not working so, reverting back to single file upload
-Router.post("/", upload.array("file",4), async (req, res) => {
-// Router.post("/", upload.single("file"), async (req, res) => {
+Router.post("/", upload.array("file", 4), async (req, res) => {
+  // Router.post("/", upload.single("file"), async (req, res) => {
   try {
     // ulpoad to S3
     const file = req.file;
